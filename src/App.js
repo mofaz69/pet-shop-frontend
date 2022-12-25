@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./home/home";
+import Home from "./Home/Home";
+import SignUp from "./SignUp/SignUp";
+import SignIn from "./SignIn/SignIn";
+import Search from "./Search/Search";
+import Pet from "./Pet/Pet";
+import Profile from "./Profile/Profile";
+import MyPet from "./MyPet/MyPet";
+import NavBar from "./NavBar/NavBar";
 
 function App() {
   useEffect(() => {
@@ -15,8 +22,15 @@ function App() {
 
   return (
     <div>
+      <NavBar path="/" />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route>
+        <Route path="/search" element={<Search />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route path="/pet" element={<Pet />}></Route>
+        <Route path="/mypet" element={<MyPet />}></Route>
       </Routes>
     </div>
   );
