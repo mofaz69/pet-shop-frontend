@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { ModalBox } from "../components/Modal/Modal";
+import Profile from "../Profile/Profile";
+import Search from "../Search/Search";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 import "./Home.css";
@@ -7,6 +9,8 @@ import "./Home.css";
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <div>
@@ -19,7 +23,9 @@ export default function Home() {
 
       <button onClick={() => setShowLogin(true)}>Login</button>
       <button onClick={() => setShowSignup(true)}>Signup</button>
-      <button>Search</button>
+      <button onClick={() => setShowProfile(true)}>Profile</button>
+      <button onClick={() => setShowSearch(true)}>Search</button>
+
       <ModalBox
         header="Login"
         setShow={setShowLogin}
@@ -36,6 +42,15 @@ export default function Home() {
       >
         <SignUp />
       </ModalBox>
+      <ModalBox
+        header="Profile"
+        setShow={setShowProfile}
+        show={showProfile}
+        showConfirm={false}
+      >
+        <Profile />
+      </ModalBox>
+      <Search />
     </div>
   );
 }
