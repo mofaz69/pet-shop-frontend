@@ -23,8 +23,6 @@ export default function Home() {
 
       <button onClick={() => setShowLogin(true)}>Login</button>
       <button onClick={() => setShowSignup(true)}>Signup</button>
-      <button onClick={() => setShowProfile(true)}>Profile</button>
-      <button onClick={() => setShowSearch(true)}>Search</button>
 
       <ModalBox
         header="Login"
@@ -42,15 +40,6 @@ export default function Home() {
       >
         <SignUp />
       </ModalBox>
-      <ModalBox
-        header="Profile"
-        setShow={setShowProfile}
-        show={showProfile}
-        showConfirm={false}
-      >
-        <Profile />
-      </ModalBox>
-      <Search />
     </div>
   );
 }
