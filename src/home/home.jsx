@@ -21,9 +21,6 @@ export default function Home() {
         placeat!
       </p>
 
-      <button onClick={() => setShowLogin(true)}>Login</button>
-      <button onClick={() => setShowSignup(true)}>Signup</button>
-
       <ModalBox
         header="Login"
         setShow={setShowLogin}
