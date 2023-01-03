@@ -2,8 +2,13 @@ import React from "react";
 import "./Pet.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useParams } from "react-router-dom";
 
 export default function Pet() {
+  const { petId } = useParams();
+
+  // useEffect - getPetById
+  console.log(petId);
   return (
     <div>
       <h1>Welcome to David Page</h1>

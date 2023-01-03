@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
@@ -6,40 +6,58 @@ import { ModalBox } from "../components/Modal/Modal";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
-import MyPet from "../MyPet/MyPet";
+import { AuthContext } from "../context/authContext";
 
 export default function NavBar() {
+  const { isLoggedIn, user } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+
   return (
     <div>
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="/">Home</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link>
-              <Link to="/profile">Profile</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/search">Search</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/signIn">Login</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/signUp">Sign-Up</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="MyPet">Go To My Pets!</Link>
-            </Nav.Link>
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
+
+            <Link className="nav-link" to="/search">
+              Search
+            </Link>
+
+            {!isLoggedIn ? (
+              <>
+                <Link
+                  className="nav-link"
+                  onClick={() => setShowLogin((prev) => !prev)}
+                >
+                  Login
+                </Link>
+
+                <Link
+                  className="nav-link"
+                  onClick={() => setShowSignup((prev) => !prev)}
+                >
+                  Sign-Up
+                </Link>
+              </>
+            ) : null}
+            <Link className="nav-link" to="MyPet">
+              Go To My Pets!
+            </Link>
           </Nav>
         </Container>
       </Navbar>
+      <ModalBox show={showLogin} setShow={setShowLogin} showConfirm={false}>
+        <SignIn />
+      </ModalBox>
+      <ModalBox show={showSignup} setShow={setShowSignup} showConfirm={false}>
+        <SignUp />
+      </ModalBox>
     </div>
   );
 }

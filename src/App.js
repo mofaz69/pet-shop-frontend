@@ -24,12 +24,12 @@ function App() {
       <NavBar path="/" />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/signin" element={<SignIn />}></Route>
+        {/* <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route> */}
         <Route path="/search" element={<Search />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/pet" element={<Pet />}></Route>
         <Route path="/mypet" element={<MyPet />}></Route>
+        <Route path="/mypet/:petId" element={<Pet />}></Route>
       </Routes>
     </div>
   );
