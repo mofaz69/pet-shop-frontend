@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { AuthContext } from "../context/authContext";
 import "./SignIn.css";
 
-export default function SignIn() {
+export default function SignIn({ setShowLogin }) {
   const auth = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +13,7 @@ export default function SignIn() {
     e.preventDefault();
     try {
       await auth.login(email, password);
+      setShowLogin(false);
     } catch (err) {
       console.log(err);
       alert(err);

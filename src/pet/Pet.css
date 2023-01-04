@@ -1,0 +1,11 @@
+.card {
+  display: grid;
+  place-items: center;
+  margin: 20px;
+  width: 32rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}

@@ -7,7 +7,7 @@ import SignIn from "./SignIn/SignIn";
 import Search from "./Search/Search";
 import Pet from "./Pet/Pet";
 import Profile from "./Profile/Profile";
-import MyPet from "./MyPet/MyPet";
+import Pets from "./Pets/Pets";
 import NavBar from "./NavBar/NavBar";
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path="/signin" element={<SignIn />}></Route> */}
         <Route path="/search" element={<Search />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/mypet" element={<MyPet />}></Route>
+        <Route path="/pets" element={<Pets />}></Route>
         <Route path="/mypet/:petId" element={<Pet />}></Route>
       </Routes>
     </div>

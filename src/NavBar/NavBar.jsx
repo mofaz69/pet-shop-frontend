@@ -46,14 +46,14 @@ export default function NavBar() {
                 </Link>
               </>
             ) : null}
-            <Link className="nav-link" to="MyPet">
+            <Link className="nav-link" to="pets">
               Go To My Pets!
             </Link>
           </Nav>
         </Container>
       </Navbar>
       <ModalBox show={showLogin} setShow={setShowLogin} showConfirm={false}>
-        <SignIn />
+        <SignIn setShowLogin={setShowLogin} />
       </ModalBox>
       <ModalBox show={showSignup} setShow={setShowSignup} showConfirm={false}>
         <SignUp />
