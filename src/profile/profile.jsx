@@ -33,8 +33,7 @@ export default function Profile() {
         </Form.Group>
         <Form.Group className="mb-3" controlId="bio">
           <Form.Label>Bio</Form.Label>
-          <input type="text" />
-          <Form.Check type="textbox" placeholder="Write your bio" />
+          <Form.Control type="textbox" placeholder="Write your bio" />
         </Form.Group>
         <Button variant="primary" type="save">
           Save

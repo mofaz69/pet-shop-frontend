@@ -1,15 +1,12 @@
 import React, { useContext, useState } from "react";
-import "./Pets.css";
+import "./PetList.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Pet from "../Pet/Pet";
 import { Link } from "react-router-dom";
-import { PetContext } from "../context/petContext";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../../context/authContext";
 // import React, { useState } from "react";
 
-export default function Pets() {
-  const { pets } = useContext(PetContext);
+export default function PetList({ pets }) {
   const { user, isLoggedIn } = useContext(AuthContext);
   return (
     <div>

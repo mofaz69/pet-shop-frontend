@@ -1,0 +1,13 @@
+.right-NavBar {
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.homeStructure {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 40px;
+  margin: 5rem;
+}

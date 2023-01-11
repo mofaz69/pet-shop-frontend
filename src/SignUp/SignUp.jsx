@@ -1,11 +1,15 @@
 import React from "react";
+import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { AuthContext } from "../context/authContext";
 import "./SignUp.css";
 
-export default function SignUp() {
+export default function SignUp({ setShowSignup }) {
+  const auth = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -15,27 +19,18 @@ export default function SignUp() {
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
     const phoneNumber = formData.get("phoneNumber");
-
     try {
-      const response = await fetch("http://localhost:3001/user/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          passwordRepeat,
-          firstName,
-          lastName,
-          phoneNumber,
-        }),
+      await auth.signup({
+        email,
+        password,
+        passwordRepeat,
+        firstName,
+        lastName,
+        phoneNumber,
       });
-      const result = await response.json();
-      if (response.statusCode !== 200) {
-        throw new Error(result.message);
-      }
-      // setUser(result)
-      // save user to userContext
+      setShowSignup(false);
     } catch (error) {
+      console.log(error);
       alert(error.message);
     }
   };

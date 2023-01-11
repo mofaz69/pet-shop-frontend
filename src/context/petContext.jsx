@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./authContext";
 
 // default state - not logged in
 export const PetContext = React.createContext({
@@ -7,6 +9,7 @@ export const PetContext = React.createContext({
 });
 
 export function PetContextProvider({ children }) {
+  const { setUser } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
 
   const getAllPets = async () => {
@@ -31,10 +34,28 @@ export function PetContextProvider({ children }) {
     console.log(data);
   };
 
+  const savePetToUser = async (petId) => {
+    const response = await fetch("http://localhost:3001/pet/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ petId }),
+    });
+
+    const data = await response.json();
+    if (response.status === 200) {
+      alert(data.message);
+      setUser((user) => ({
+        ...user,
+        favoritePets: [...user.favoritePets, petId],
+      }));
+    }
+  };
+
   useEffect(() => {
     getAllPets();
   }, []);
 
-  const value = { pets, adoptPet };
+  const value = { pets, adoptPet, savePetToUser };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }

@@ -1,0 +1,12 @@
+.search-location {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.input-group {
+  width: 16rem;
+  flex-direction: row;
+  align-content: center;
+  margin: 2rem;
+}

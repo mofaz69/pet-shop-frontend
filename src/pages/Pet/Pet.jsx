@@ -3,16 +3,20 @@ import "./Pet.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link, useParams } from "react-router-dom";
-import { PetContext } from "../context/petContext";
+import { PetContext } from "../../context/petContext";
 
 export default function Pet() {
   const { petId } = useParams();
-  const { pets, adoptPet } = useContext(PetContext);
+  const { pets, adoptPet, savePetToUser } = useContext(PetContext);
   const pet = pets.find((pet) => petId === pet._id);
   if (!pet) {
     return null;
   }
-  console.log(pet);
+
+  const handleAddToSavedPets = () => {
+    savePetToUser(petId);
+  };
+
   return (
     <div className="container">
       <Card style={{ width: "32rem" }}>
@@ -39,7 +43,9 @@ export default function Pet() {
                 Adopt this cutie!
               </Button>
             ) : null}
-            <Button variant="primary">Save {pet.name} for later</Button>
+            <Button variant="primary" onClick={handleAddToSavedPets}>
+              Save {pet.name} for later
+            </Button>
             <Link to={"/"}>
               <Button>Return Home</Button>
             </Link>
