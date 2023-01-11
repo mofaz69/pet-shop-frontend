@@ -12,6 +12,11 @@ export function PetContextProvider({ children }) {
   const { setUser, user } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
 
+  const setAddPet = () => {
+    setAddPet(false);
+    setPets();
+  };
+
   const getAllPets = async () => {
     const response = await fetch("http://localhost:3001/pet");
     const data = await response.json();
@@ -82,6 +87,51 @@ export function PetContextProvider({ children }) {
     getAllPets();
   }, []);
 
-  const value = { pets, adoptPet, savePetToUser, unadoptPet };
+  const addPet = async ({
+    type,
+    name,
+    adoptionStatus,
+    image,
+    height,
+    weight,
+    color,
+    bio,
+    hypoallergenic,
+    dietaryRestrictions,
+    breed,
+  }) => {
+    const response = await fetch("http://localhost:3001/pet/addpet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type,
+        name,
+        adoptionStatus,
+        image,
+        height,
+        weight,
+        color,
+        bio,
+        hypoallergenic,
+        dietaryRestrictions,
+        breed,
+      }),
+    });
+    const data = await response.json();
+    console.log(response.status);
+    if (response.status !== 200) {
+      throw new Error(data.message);
+    }
+    setPets(data);
+    setAddPet(true);
+  };
+  const value = {
+    pets,
+    adoptPet,
+    savePetToUser,
+    unadoptPet,
+    setPets,
+    setAddPet,
+  };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }
