@@ -4,10 +4,12 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link, useParams } from "react-router-dom";
 import { PetContext } from "../../context/petContext";
+import { AuthContext } from "../../context/authContext";
 
 export default function Pet() {
   const { petId } = useParams();
-  const { pets, adoptPet, savePetToUser } = useContext(PetContext);
+  const { pets, adoptPet, unadoptPet, savePetToUser } = useContext(PetContext);
+  const { user } = useContext(AuthContext);
   const pet = pets.find((pet) => petId === pet._id);
   if (!pet) {
     return null;
@@ -16,6 +18,8 @@ export default function Pet() {
   const handleAddToSavedPets = () => {
     savePetToUser(petId);
   };
+
+  const isMyPet = user?._id === pet.owner;
 
   return (
     <div className="container">
@@ -40,9 +44,16 @@ export default function Pet() {
           <div className="buttons">
             {!pet.owner ? (
               <Button variant="primary" onClick={() => adoptPet(petId)}>
-                Adopt this cutie!
+                Adopt {pet.name}!
               </Button>
             ) : null}
+
+            {isMyPet ? (
+              <Button variant="primary" onClick={() => unadoptPet(petId)}>
+                Un-adopt {pet.name}
+              </Button>
+            ) : null}
+
             <Button variant="primary" onClick={handleAddToSavedPets}>
               Save {pet.name} for later
             </Button>

@@ -1,12 +1,11 @@
 .search-location {
-  display: flex;
-  text-align: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  padding-top: 2rem;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.input-group {
-  width: 16rem;
-  flex-direction: row;
-  align-content: center;
-  margin: 2rem;
+.search-location .form-outline {
+  flex: 1;
 }

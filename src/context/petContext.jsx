@@ -9,7 +9,7 @@ export const PetContext = React.createContext({
 });
 
 export function PetContextProvider({ children }) {
-  const { setUser } = useContext(AuthContext);
+  const { setUser, user } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
 
   const getAllPets = async () => {
@@ -32,6 +32,32 @@ export function PetContextProvider({ children }) {
 
     const data = await response.json();
     console.log(data);
+
+    setPets((pets) => {
+      const updatedPets = [...pets];
+      const petIndex = updatedPets.findIndex((p) => p._id === petId);
+      updatedPets[petIndex].owner = user._id;
+      return updatedPets;
+    });
+  };
+
+  const unadoptPet = async (petId) => {
+    const response = await fetch("http://localhost:3001/pet/unadopt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ petId }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+    setPets((pets) => {
+      const updatedPets = [...pets];
+      const petIndex = updatedPets.findIndex((p) => p._id === petId);
+      updatedPets[petIndex].owner = "";
+      return updatedPets;
+    });
   };
 
   const savePetToUser = async (petId) => {
@@ -56,6 +82,6 @@ export function PetContextProvider({ children }) {
     getAllPets();
   }, []);
 
-  const value = { pets, adoptPet, savePetToUser };
+  const value = { pets, adoptPet, savePetToUser, unadoptPet };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }

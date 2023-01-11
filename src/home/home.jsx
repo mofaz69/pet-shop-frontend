@@ -19,8 +19,9 @@ export default function Home() {
         <p>
           Here you can find the most crazy and extreme pet adoption place around
           the world.
+          <br />
+          Don't believe me? Check out our App and find out by yourself!
         </p>
-        <p>Don't believe me? Check out our App and find out by yourself!</p>
       </div>
       <div className="home-buttons">
         <Link to="/search">

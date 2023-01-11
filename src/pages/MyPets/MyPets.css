@@ -1,0 +1,9 @@
+.myPetsContainer {
+  display: grid;
+}
+.myPetsButtons {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  gap: 2rem;
+}

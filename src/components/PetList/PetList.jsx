@@ -9,10 +9,7 @@ import { AuthContext } from "../../context/authContext";
 export default function PetList({ pets }) {
   const { user, isLoggedIn } = useContext(AuthContext);
   return (
-    <div>
-      {isLoggedIn ? (
-        <h1>You currently own {user.favoritePets?.length || 0} pets</h1>
-      ) : null}
+    <div className="headerMyPets">
       <div className="petsCard">
         {pets.map((pet, index) => {
           return (

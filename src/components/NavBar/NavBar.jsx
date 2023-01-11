@@ -11,7 +11,7 @@ import SignUp from "../../SignUp/SignUp";
 import { AuthContext } from "../../context/authContext";
 
 export default function NavBar() {
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn, logout, user } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -51,9 +51,21 @@ export default function NavBar() {
                   </Link>
                 </>
               ) : (
-                <Link className="nav-link" onClick={() => logout()}>
-                  Logout
-                </Link>
+                <>
+                  {user.isAdmin ? (
+                    <>
+                      <Link className="nav-link" to="add-pet">
+                        Add Pet
+                      </Link>
+                      <Link className="nav-link" to="dashboard">
+                        Dashboard
+                      </Link>
+                    </>
+                  ) : null}
+                  <Link className="nav-link" onClick={() => logout()}>
+                    Logout
+                  </Link>
+                </>
               )}
             </div>
           </Nav>
