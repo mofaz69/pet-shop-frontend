@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/authContext";
 
 export default function Pet() {
   const { petId } = useParams();
+  // const { deletePet } = useContext(PetContext);
   const { pets, adoptPet, unadoptPet, savePetToUser } = useContext(PetContext);
   const { user } = useContext(AuthContext);
   const pet = pets.find((pet) => petId === pet._id);

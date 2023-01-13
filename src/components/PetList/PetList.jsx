@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/authContext";
 
 export default function PetList({ pets }) {
   const { user, isLoggedIn } = useContext(AuthContext);
+  const { pets } = useState;
   return (
     <div className="headerMyPets">
       <div className="petsCard">

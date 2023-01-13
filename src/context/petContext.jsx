@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
+import PetList from "../components/PetList/PetList";
 import { AuthContext } from "./authContext";
 
 // default state - not logged in
@@ -125,6 +126,12 @@ export function PetContextProvider({ children }) {
     setPets(data);
     setAddPet(true);
   };
+
+  // const deletePet = (petId) => {
+  //   const newArray = PetList.filter((pet) => pet._id !== petId);
+  //   setPetList(newArray);
+  // };
+
   const value = {
     pets,
     adoptPet,
@@ -132,6 +139,7 @@ export function PetContextProvider({ children }) {
     unadoptPet,
     setPets,
     setAddPet,
+    deletePet,
   };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }
