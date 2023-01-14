@@ -9,16 +9,9 @@ import NavBar from "./components/NavBar/NavBar";
 import AddPet from "./Admin/AddPet/AddPet";
 import Dashboard from "./Admin/Dashboard/Dashboard";
 import { MyPets } from "./pages/MyPets/MyPets";
+import Login from "./SignIn/SignIn";
 
 function App() {
-  useEffect(() => {
-    fetch("http://localhost:3001/pet/")
-      .then((res) => res.json())
-      .then((pets) => {
-        console.log(pets);
-      });
-  }, []);
-
   return (
     <div>
       <NavBar path="/" />
@@ -26,6 +19,14 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
+        <Route
+          path="/login"
+          element={
+            <div className="container" style={{ maxWidth: "500px" }}>
+              <Login setShowLogin={() => {}} />
+            </div>
+          }
+        ></Route>
         <Route path="/my-pets" element={<MyPets />}></Route>
         <Route path="/mypet/:petId" element={<Pet />}></Route>
         <Route path="/add-pet" element={<AddPet />}></Route>

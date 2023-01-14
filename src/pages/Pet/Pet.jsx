@@ -25,7 +25,7 @@ export default function Pet() {
   return (
     <div className="container">
       <Card style={{ width: "32rem" }}>
-        <Card.Img variant="top" src={pet.picture} />
+        <Card.Img variant="top" src={pet.picture || pet.imageUrl} />
         <Card.Body>
           <Card.Title>Name: {pet.name}</Card.Title>
           <Card.Body>Type: {pet.type}</Card.Body>

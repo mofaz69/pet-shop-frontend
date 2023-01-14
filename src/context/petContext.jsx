@@ -13,11 +13,6 @@ export function PetContextProvider({ children }) {
   const { setUser, user } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
 
-  const setAddPet = () => {
-    setAddPet(false);
-    setPets();
-  };
-
   const getAllPets = async () => {
     const response = await fetch("http://localhost:3001/pet");
     const data = await response.json();
@@ -88,43 +83,18 @@ export function PetContextProvider({ children }) {
     getAllPets();
   }, []);
 
-  const addPet = async ({
-    type,
-    name,
-    adoptionStatus,
-    image,
-    height,
-    weight,
-    color,
-    bio,
-    hypoallergenic,
-    dietaryRestrictions,
-    breed,
-  }) => {
-    const response = await fetch("http://localhost:3001/pet/addpet", {
+  const addPet = async (pet) => {
+    const response = await fetch("http://localhost:3001/pet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type,
-        name,
-        adoptionStatus,
-        image,
-        height,
-        weight,
-        color,
-        bio,
-        hypoallergenic,
-        dietaryRestrictions,
-        breed,
-      }),
+      credentials: "include",
+      body: JSON.stringify(pet),
     });
-    const data = await response.json();
-    console.log(response.status);
+    const newPet = await response.json();
     if (response.status !== 200) {
-      throw new Error(data.message);
+      throw new Error(newPet.message);
     }
-    setPets(data);
-    setAddPet(true);
+    setPets((prevPets) => [...prevPets, newPet]);
   };
 
   // const deletePet = (petId) => {
@@ -138,8 +108,8 @@ export function PetContextProvider({ children }) {
     savePetToUser,
     unadoptPet,
     setPets,
-    setAddPet,
-    deletePet,
+    addPet,
+    // deletePet,
   };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }

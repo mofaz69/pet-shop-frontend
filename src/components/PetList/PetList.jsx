@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/authContext";
 
 export default function PetList({ pets }) {
   const { user, isLoggedIn } = useContext(AuthContext);
-  const { pets } = useState;
+  // const { pets } = useState;
   return (
     <div className="headerMyPets">
       <div className="petsCard">
@@ -19,7 +19,7 @@ export default function PetList({ pets }) {
                 <div className="petPic">
                   <Card.Img
                     variant="top"
-                    src={pet.picture}
+                    src={pet.picture || pet.imageUrl}
                     className="petImage"
                   />
                 </div>
