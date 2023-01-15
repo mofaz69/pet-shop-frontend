@@ -1,8 +1,29 @@
+.homeStructure {
+  background: url(https://st2.depositphotos.com/1000686/9674/i/950/depositphotos_96749784-stock-photo-happy-family-with-pets-near.jpg)
+    no-repeat center 30% / cover;
+  color: whitesmoke;
+  margin: auto;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-top: 15px solid rgb(59 113 202);
+  border-bottom: 15px solid rgb(59 113 202);
+  border-right: 30px solid rgb(59 113 202);
+  border-left: 30px solid rgb(59 113 202);
+}
+
 .home-buttons {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   margin: auto;
   gap: 2rem;
+  justify-content: center;
+  padding-top: 2rem;
+  border-bottom: 15px solid rgb(59 113 202);
+  border-right: 30px solid rgb(59 113 202);
+  border-left: 30px solid rgb(59 113 202);
+  height: 10rem;
 }
 
 .pText {

@@ -9,23 +9,43 @@ import {
 } from "mdb-react-ui-kit";
 import PetList from "../../components/PetList/PetList";
 import { PetContext } from "../../context/petContext";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
 export default function Search() {
   const { pets } = useContext(PetContext);
-  const [searchText, setSearchText] = useState("");
+  const [searchType, setSearchType] = useState("");
+  const [searchName, setSearchName] = useState("");
+
+  const [minHeight, setMinHeight] = useState(0);
+  const [maxHeight, setMaxHeight] = useState(1000);
+  const [minWeight, setMinWeight] = useState(0);
+  const [maxWeight, setMaxWeight] = useState(1000);
+
   const [searchMode, setSearchMode] = useState("basic");
+  const [adoptionStatus, setAdoptionStatus] = useState("all");
+
+  // const [advancedSearchMode, setAdvancedSearchMode] = useState("advanced");
 
   const filteredPets = pets.filter((pet) => {
     if (searchMode === "basic") {
-      return pet.type.includes(searchText);
+      return pet.type.toLowerCase().includes(searchType.toLowerCase());
     }
 
-    const exampleMaxHeight = 30;
+    console.log(typeof pet.weight, pet.height);
 
     return (
-      pet.type.includes(searchText) &&
-      pet.name.includes(searchText) &&
-      pet.height <= exampleMaxHeight
+      pet.type.toLowerCase().includes(searchType.toLowerCase()) &&
+      pet.name.toLowerCase().includes(searchName.toLowerCase()) &&
+      (adoptionStatus === "all"
+        ? true
+        : adoptionStatus === "available"
+        ? pet.owner === ""
+        : pet.owner) &&
+      +pet.weight >= minWeight &&
+      +pet.weight <= maxWeight &&
+      +pet.height >= minHeight &&
+      +pet.height <= maxHeight
     );
   });
 
@@ -49,20 +69,80 @@ export default function Search() {
           />
         </MDBInputGroup>
 
-        {searchMode === "basic" ? (
+        <div className="inputs">
           <MDBInputGroup>
             <MDBInput
-              label="Search"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
+              label="Search pet type"
+              placeholder="Pet Type"
+              value={searchType}
+              onChange={(e) => setSearchType(e.target.value)}
             />
-            <MDBBtn rippleColor="dark" onClick={() => {}}>
-              <MDBIcon icon="search" />
-            </MDBBtn>
           </MDBInputGroup>
-        ) : (
-          <div>advanced</div>
-        )}
+          {searchMode !== "basic" ? (
+            <>
+              <MDBInputGroup>
+                <MDBInput
+                  label="Search pet name"
+                  value={searchName}
+                  onChange={(e) => setSearchName(e.target.value)}
+                />
+              </MDBInputGroup>
+              <MDBInputGroup>
+                <MDBInput
+                  label="Min weight"
+                  type="number"
+                  min={0}
+                  value={minWeight}
+                  onChange={(e) => setMinWeight(e.target.value)}
+                />
+              </MDBInputGroup>
+              <MDBInputGroup>
+                <MDBInput
+                  label="Max weight"
+                  type="number"
+                  max={10000}
+                  value={maxWeight}
+                  onChange={(e) => setMaxWeight(e.target.value)}
+                />
+              </MDBInputGroup>
+
+              <MDBInputGroup>
+                <MDBInput
+                  label="Min height"
+                  type="number"
+                  min={0}
+                  value={minHeight}
+                  onChange={(e) => setMinHeight(e.target.value)}
+                />
+              </MDBInputGroup>
+              <MDBInputGroup>
+                <MDBInput
+                  label="Max height"
+                  type="number"
+                  max={1000}
+                  value={maxHeight}
+                  onChange={(e) => setMaxHeight(e.target.value)}
+                />
+              </MDBInputGroup>
+
+              <Form.Group
+                className="adoption-status-input"
+                controlId="AdoptionStatus"
+              >
+                <Form.Select
+                  placeholder="Adoption Status"
+                  name="adoptionStatus"
+                  onChange={(e) => setAdoptionStatus(e.target.value)}
+                  value={adoptionStatus}
+                >
+                  <option value="all">Adoption Status</option>
+                  <option value="available">Available</option>
+                  <option value="adopted">Adopted</option>
+                </Form.Select>
+              </Form.Group>
+            </>
+          ) : null}
+        </div>
       </div>
       <PetList pets={filteredPets} />
     </div>

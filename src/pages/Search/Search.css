@@ -9,3 +9,13 @@
 .search-location .form-outline {
   flex: 1;
 }
+
+.search-location .inputs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-location .adoption-status-input {
+  flex: 0 0 165px;
+}

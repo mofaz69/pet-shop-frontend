@@ -49,6 +49,7 @@ export default function AddPet({}) {
 
     try {
       await pet.addPet(newPet);
+      navigate("/search");
     } catch (error) {
       console.log(error);
       alert(error.message);
@@ -76,11 +77,14 @@ export default function AddPet({}) {
         </Form.Group>
         <Form.Group as={Col} controlId="AdoptionStatus">
           <Form.Label>Adoption Status</Form.Label>
-          <Form.Control
+          <Form.Select
             type="text"
             placeholder="Adoption Status"
             name="adoptionStatus"
-          />
+          >
+            <option>Available</option>
+            <option>Adopted</option>
+          </Form.Select>
         </Form.Group>
         <Form.Group as={Col} controlId="Image">
           <Form.Label>Add Image</Form.Label>
@@ -95,7 +99,7 @@ export default function AddPet({}) {
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Weight">
-          <Form.Label>Weight</Form.Label>
+          <Form.Label>Weight (KG)</Form.Label>
           <Form.Control
             type="number"
             placeholder="Enter Animal Weight"
