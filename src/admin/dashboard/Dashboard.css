@@ -1,0 +1,24 @@
+#dashboard .user-table {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 90%;
+  margin: 0 auto;
+}
+#dashboard .user-row {
+  display: flex;
+}
+
+#dashboard .user-row > * {
+  flex: 1;
+}
+
+#dashboard .user-row > *:last-child {
+  flex: 0.5;
+}
+
+#dashboard .pet-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

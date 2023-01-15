@@ -6,3 +6,8 @@
   display: grid;
   place-items: center;
 }
+
+.white-text,
+.white-text:hover {
+  color: white;
+}

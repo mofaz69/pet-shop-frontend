@@ -1,3 +1,6 @@
+.empty {
+  text-align: center;
+}
 .petsCard {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));

@@ -6,8 +6,8 @@ import Search from "./pages/Search/Search";
 import Pet from "./pages/Pet/Pet";
 import Profile from "./Profile/Profile";
 import NavBar from "./components/NavBar/NavBar";
-import AddPet from "./Admin/AddPet/AddPet";
-import Dashboard from "./Admin/Dashboard/Dashboard";
+import { AddEditPet } from "./Admin/AddPet/AddPet";
+import { Dashboard } from "./Admin/Dashboard/Dashboard";
 import { MyPets } from "./pages/MyPets/MyPets";
 import Login from "./SignIn/SignIn";
 
@@ -29,7 +29,8 @@ function App() {
         ></Route>
         <Route path="/my-pets" element={<MyPets />}></Route>
         <Route path="/mypet/:petId" element={<Pet />}></Route>
-        <Route path="/add-pet" element={<AddPet />}></Route>
+        <Route path="/add-pet" element={<AddEditPet />}></Route>
+        <Route path="/edit/:petId" element={<AddEditPet />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
       </Routes>
     </div>

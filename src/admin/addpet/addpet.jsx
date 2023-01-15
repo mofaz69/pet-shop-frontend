@@ -3,15 +3,17 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { PetContext } from "../../context/petContext";
 import "./AddPet.css";
 
-export default function AddPet({}) {
+export function AddEditPet() {
   const { user, isLoggedIn } = useContext(AuthContext);
-  const pet = useContext(PetContext);
+  const { addPet, pets } = useContext(PetContext);
   const navigate = useNavigate();
+  const { petId } = useParams();
+  const editedPet = pets.find((p) => p._id === petId);
 
   useEffect(() => {
     if (!isLoggedIn || !user.isAdmin) {
@@ -48,7 +50,7 @@ export default function AddPet({}) {
     };
 
     try {
-      await pet.addPet(newPet);
+      await addPet(newPet);
       navigate("/search");
     } catch (error) {
       console.log(error);
@@ -65,6 +67,7 @@ export default function AddPet({}) {
             type="text"
             placeholder="Enter animal type"
             name="type"
+            defaultValue={editedPet.name || ""}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Name">
