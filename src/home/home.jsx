@@ -11,11 +11,13 @@ export default function Home() {
   return (
     <div className="homeContainer">
       <div className="homeStructure">
-        {isLoggedIn ? (
-          <h1> Welcome {user.firstName + " " + user.lastName}</h1>
-        ) : null}
+        <div className="titles">
+          {isLoggedIn ? (
+            <h1> Welcome {user.firstName + " " + user.lastName}</h1>
+          ) : null}
 
-        <h2>Welcome to eXtreme Adopted!</h2>
+          <h1>Welcome to eXtreme Adopted!</h1>
+        </div>
         <div className="pText">
           <p>
             Here you can find the most crazy and extreme pet adoption place

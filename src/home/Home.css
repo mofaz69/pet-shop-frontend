@@ -13,10 +13,23 @@
   border-left: 30px solid rgb(59 113 202);
 }
 
-.pText {
+.titles {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rem;
+  color: rgb(245 245 245);
+  text-shadow: 2px 2px 4px #000000;
+}
+.pText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: bolder;
+  color: rgb(245 245 245);
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .home-buttons {
@@ -26,6 +39,7 @@
   gap: 2rem;
   justify-content: center;
   padding-top: 2rem;
+  background-color: #c8c8c8;
   border-bottom: 15px solid rgb(59 113 202);
   border-right: 30px solid rgb(59 113 202);
   border-left: 30px solid rgb(59 113 202);
