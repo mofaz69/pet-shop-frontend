@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./PetList.css";
 
 import { PetCard } from "./PetCard/PetCard";
-// import React, { useState } from "react";
 
 export default function PetList({ pets }) {
   return (

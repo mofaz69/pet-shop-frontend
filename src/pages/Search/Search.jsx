@@ -1,15 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./Search.css";
-import {
-  MDBInputGroup,
-  MDBInput,
-  MDBIcon,
-  MDBBtn,
-  MDBRadio,
-} from "mdb-react-ui-kit";
+import { MDBInputGroup, MDBInput, MDBRadio } from "mdb-react-ui-kit";
 import PetList from "../../components/PetList/PetList";
 import { PetContext } from "../../context/petContext";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
 export default function Search() {

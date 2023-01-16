@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/search" element={<Search />}></Route>
+        <Route path="/search/:type" element={<Search />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route
           path="/login"

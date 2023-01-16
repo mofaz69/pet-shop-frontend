@@ -29,9 +29,9 @@ export default function NavBar() {
               </Link>
             ) : null}
 
-            <Link className="nav-link" to="/search">
+            {/* <Link className="nav-link" to="/search">
               Search
-            </Link>
+            </Link> */}
             <Link className="nav-link" to="/my-pets">
               My Pets
             </Link>
