@@ -49,9 +49,9 @@ export default function Home() {
             Search pets
           </Button>{" "}
         </Link>
-        <Link to="/petlist">
+        <Link to="/my-pets">
           <Button variant="primary" className="square-button">
-            View all our pets
+            My Pets
           </Button>{" "}
         </Link>
       </div>

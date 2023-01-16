@@ -16,8 +16,8 @@ export default function NavBar() {
   const [showSignup, setShowSignup] = useState(false);
 
   return (
-    <div>
-      <Navbar bg="light" variant="light">
+    <div className="navBar-container">
+      <Navbar>
         <Container>
           <Link className="nav-link" to="/">
             Home
@@ -29,12 +29,12 @@ export default function NavBar() {
               </Link>
             ) : null}
 
-            {/* <Link className="nav-link" to="/search">
+            <Link className="nav-link" to="/search">
               Search
-            </Link> */}
-            <Link className="nav-link" to="/my-pets">
-              My Pets
             </Link>
+            {/* <Link className="nav-link" to="/my-pets">
+              My Pets
+            </Link> */}
             <div className="right-NavBar">
               {!isLoggedIn ? (
                 <>
