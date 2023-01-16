@@ -6,11 +6,11 @@ import Form from "react-bootstrap/Form";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import { PetContext } from "../../context/petContext";
-import "./AddPet.css";
+import "./AddEditPet.css";
 
 export function AddEditPet() {
   const { user, isLoggedIn } = useContext(AuthContext);
-  const { addPet, pets } = useContext(PetContext);
+  const { addPet, pets, editPet } = useContext(PetContext);
   const navigate = useNavigate();
   const { petId } = useParams();
   const editedPet = pets.find((p) => p._id === petId);
@@ -26,7 +26,7 @@ export function AddEditPet() {
     const formData = new FormData(e.target);
     const type = formData.get("type");
     const name = formData.get("name");
-    const adoptionStatus = formData.get("adoptionStatus");
+    const owner = formData.get("owner");
     const imageUrl = formData.get("image");
     const height = formData.get("height");
     const weight = formData.get("weight");
@@ -35,10 +35,10 @@ export function AddEditPet() {
     const hypoallergenic = formData.get("hypoallergenic");
     const dietaryRestrictions = formData.get("dietaryRestrictions");
     const breed = formData.get("breed");
-    const newPet = {
+    const petData = {
       type,
       name,
-      adoptionStatus,
+      owner,
       imageUrl,
       height,
       weight,
@@ -50,7 +50,11 @@ export function AddEditPet() {
     };
 
     try {
-      await addPet(newPet);
+      if (petId) {
+        await editPet({ _id: petId, ...petData });
+      } else {
+        await addPet(petData);
+      }
       navigate("/search");
     } catch (error) {
       console.log(error);
@@ -67,7 +71,7 @@ export function AddEditPet() {
             type="text"
             placeholder="Enter animal type"
             name="type"
-            defaultValue={editedPet.name || ""}
+            defaultValue={editedPet?.type || ""}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Name">
@@ -76,22 +80,26 @@ export function AddEditPet() {
             type="name"
             placeholder="Enter animal name"
             name="name"
+            defaultValue={editedPet?.name || ""}
           />
         </Form.Group>
-        <Form.Group as={Col} controlId="AdoptionStatus">
-          <Form.Label>Adoption Status</Form.Label>
-          <Form.Select
-            type="text"
-            placeholder="Adoption Status"
-            name="adoptionStatus"
-          >
-            <option>Available</option>
-            <option>Adopted</option>
-          </Form.Select>
+        <Form.Group as={Col} controlId="Name">
+          <Form.Label>Owner id (if exists)</Form.Label>
+          <Form.Control
+            type="owner"
+            placeholder="Enter owner id"
+            name="owner"
+            defaultValue={editedPet?.owner || ""}
+          />
         </Form.Group>
         <Form.Group as={Col} controlId="Image">
           <Form.Label>Add Image</Form.Label>
-          <Form.Control type="text" placeholder="Animal Photo" name="image" />
+          <Form.Control
+            type="text"
+            placeholder="Animal Photo"
+            name="image"
+            defaultValue={editedPet?.picture || editedPet?.imageUrl || ""}
+          />
         </Form.Group>
         <Form.Group as={Col} controlId="animalHeight">
           <Form.Label>Height (CM)</Form.Label>
@@ -99,6 +107,7 @@ export function AddEditPet() {
             type="number"
             placeholder="Enter Animal Height"
             name="height"
+            defaultValue={editedPet?.height || ""}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Weight">
@@ -107,6 +116,7 @@ export function AddEditPet() {
             type="number"
             placeholder="Enter Animal Weight"
             name="weight"
+            defaultValue={editedPet?.weight || ""}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Color">
@@ -115,15 +125,26 @@ export function AddEditPet() {
             type="text"
             placeholder="Enter Animal Color"
             name="color"
+            defaultValue={editedPet?.color || ""}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="bio">
           <Form.Label>Bio</Form.Label>
-          <Form.Control type="text" placeholder="Write animal bio" name="bio" />
+          <Form.Control
+            type="text"
+            placeholder="Write animal bio"
+            name="bio"
+            defaultValue={editedPet?.bio || ""}
+          />
         </Form.Group>
         <Form.Group as={Col} controlId="Hypoallergenic">
           <Form.Label>Hypoallergenic</Form.Label>
-          <Form.Select form="add-pet" name="hypoallergenic">
+
+          <Form.Select
+            form="add-pet"
+            name="hypoallergenic"
+            defaultValue={editedPet?.hypoallergenic ? "Yes" : "No"}
+          >
             <option>Yes</option>
             <option>No</option>
           </Form.Select>
@@ -134,6 +155,7 @@ export function AddEditPet() {
             type="text"
             placeholder="Any dietary restrictions?"
             name="dietaryRestrictions"
+            defaultValue={editedPet?.dietaryRestrictions || ""}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Breed">
@@ -142,6 +164,7 @@ export function AddEditPet() {
             type="text"
             placeholder="Write the animal breed"
             name="breed"
+            defaultValue={editedPet?.breed || ""}
           />
         </Form.Group>
         <Button variant="primary" type="save">

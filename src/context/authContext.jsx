@@ -61,6 +61,31 @@ export function AuthContextProvider({ children }) {
     setIsLoggedIn(true);
   };
 
-  const value = { isLoggedIn, user, logout, login, signup, setUser };
+  const updateUser = async (updatedUserData) => {
+    const response = await fetch(`http://localhost:3001/user/${user._id}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedUserData),
+    });
+
+    const data = await response.json();
+    console.log(response.status);
+    if (response.status !== 200) {
+      throw new Error(data.message);
+    }
+
+    setUser(data);
+  };
+
+  const value = {
+    isLoggedIn,
+    user,
+    logout,
+    login,
+    signup,
+    setUser,
+    updateUser,
+  };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

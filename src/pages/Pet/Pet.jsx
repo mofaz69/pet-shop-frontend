@@ -9,7 +9,8 @@ import { AuthContext } from "../../context/authContext";
 export default function Pet() {
   const { petId } = useParams();
   // const { deletePet } = useContext(PetContext);
-  const { pets, adoptPet, unadoptPet, savePetToUser } = useContext(PetContext);
+  const { pets, adoptPet, returnPet, savePetToUser, removePetFromUser } =
+    useContext(PetContext);
   const { user } = useContext(AuthContext);
   const pet = pets.find((pet) => petId === pet._id);
   if (!pet) {
@@ -20,7 +21,12 @@ export default function Pet() {
     savePetToUser(petId);
   };
 
+  const handleRemoveFromSavedPets = () => {
+    removePetFromUser(petId);
+  };
+
   const isMyPet = user?._id === pet.owner;
+  const isMySavedPet = user?.favoritePets.includes(petId);
 
   return (
     <div className="container">
@@ -50,14 +56,20 @@ export default function Pet() {
             ) : null}
 
             {isMyPet ? (
-              <Button variant="primary" onClick={() => unadoptPet(petId)}>
-                Un-adopt {pet.name}
+              <Button variant="primary" onClick={() => returnPet(petId)}>
+                Return {pet.name}
               </Button>
             ) : null}
 
-            <Button variant="primary" onClick={handleAddToSavedPets}>
-              Save {pet.name} for later
-            </Button>
+            {isMySavedPet ? (
+              <Button variant="primary" onClick={handleRemoveFromSavedPets}>
+                Remove {pet.name} from saved pets
+              </Button>
+            ) : (
+              <Button variant="primary" onClick={handleAddToSavedPets}>
+                Save {pet.name} for later
+              </Button>
+            )}
             <Link to={"/"}>
               <Button>Return Home</Button>
             </Link>

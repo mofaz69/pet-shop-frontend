@@ -6,7 +6,7 @@ import Search from "./pages/Search/Search";
 import Pet from "./pages/Pet/Pet";
 import Profile from "./Profile/Profile";
 import NavBar from "./components/NavBar/NavBar";
-import { AddEditPet } from "./Admin/AddPet/AddPet";
+import { AddEditPet } from "./Admin/AddEditPet/AddEditPet";
 import { Dashboard } from "./Admin/Dashboard/Dashboard";
 import { MyPets } from "./pages/MyPets/MyPets";
 import Login from "./SignIn/SignIn";

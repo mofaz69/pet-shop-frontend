@@ -24,11 +24,9 @@ export function PetContextProvider({ children }) {
   };
 
   const adoptPet = async (petId) => {
-    const response = await fetch("http://localhost:3001/pet/adopt", {
+    const response = await fetch(`http://localhost:3001/pet/${petId}/adopt`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ petId }),
     });
 
     const data = await response.json();
@@ -42,12 +40,10 @@ export function PetContextProvider({ children }) {
     });
   };
 
-  const unadoptPet = async (petId) => {
-    const response = await fetch("http://localhost:3001/pet/unadopt", {
+  const returnPet = async (petId) => {
+    const response = await fetch(`http://localhost:3001/pet/${petId}/return`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ petId }),
     });
 
     const data = await response.json();
@@ -62,11 +58,9 @@ export function PetContextProvider({ children }) {
   };
 
   const savePetToUser = async (petId) => {
-    const response = await fetch("http://localhost:3001/pet/save", {
+    const response = await fetch(`http://localhost:3001/pet/${petId}/save`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ petId }),
     });
 
     const data = await response.json();
@@ -75,6 +69,21 @@ export function PetContextProvider({ children }) {
       setUser((user) => ({
         ...user,
         favoritePets: [...user.favoritePets, petId],
+      }));
+    }
+  };
+  const removePetFromUser = async (petId) => {
+    const response = await fetch(`http://localhost:3001/pet/${petId}/save`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (response.status === 200) {
+      alert(data.message);
+      setUser((user) => ({
+        ...user,
+        favoritePets: [...user.favoritePets.filter((id) => id !== petId)],
       }));
     }
   };
@@ -97,6 +106,25 @@ export function PetContextProvider({ children }) {
     setPets((prevPets) => [...prevPets, newPet]);
   };
 
+  const editPet = async (pet) => {
+    const response = await fetch(`http://localhost:3001/pet/${pet._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(pet),
+    });
+    const editedPet = await response.json();
+    if (response.status !== 200) {
+      throw new Error(editedPet.message);
+    }
+    setPets((prevPets) => {
+      const updatedPets = [...prevPets];
+      const index = prevPets.findIndex((p) => p._id === pet._id);
+      updatedPets[index] = pet;
+      return updatedPets;
+    });
+  };
+
   // const deletePet = (petId) => {
   //   const newArray = PetList.filter((pet) => pet._id !== petId);
   //   setPetList(newArray);
@@ -106,10 +134,11 @@ export function PetContextProvider({ children }) {
     pets,
     adoptPet,
     savePetToUser,
-    unadoptPet,
+    returnPet,
     setPets,
     addPet,
-    // deletePet,
+    editPet,
+    removePetFromUser,
   };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }

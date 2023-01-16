@@ -23,9 +23,11 @@ export default function NavBar() {
             Home
           </Link>
           <Nav className="me-auto">
-            <Link className="nav-link" to="/profile">
-              Profile
-            </Link>
+            {isLoggedIn ? (
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            ) : null}
 
             <Link className="nav-link" to="/search">
               Search

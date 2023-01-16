@@ -16,12 +16,16 @@ export function Dashboard() {
   useEffect(() => {
     fetch("http://localhost:3001/user", {
       credentials: "include",
-    }).then((res) =>
-      res.json().then((data) => {
-        setUsers(data.users);
-        setOwnedPets(data.ownedPets);
-      })
-    );
+    })
+      .then((res) =>
+        res.json().then((data) => {
+          setUsers(data.users);
+          setOwnedPets(data.ownedPets);
+        })
+      )
+      .catch((err) => {
+        alert("Error: " + err.message);
+      });
   }, []);
 
   return (
