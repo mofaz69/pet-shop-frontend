@@ -30,10 +30,10 @@ export function Dashboard() {
 
   return (
     <div id="dashboard">
-      <h1>Dashboard</h1>
+      <h1 className="dashboard-title">Dashboard</h1>
 
       <br />
-      <h2>Users</h2>
+      <h2 className="dashboard-title">Users</h2>
       <div className="user-table">
         <div className="user-row">
           <span>First Name</span>
@@ -67,7 +67,7 @@ export function Dashboard() {
         })}
       </div>
       <br />
-      <h2>Pets</h2>
+      <h2 className="dashboard-title">Pets</h2>
       {pets.map((pet) => {
         return (
           <div className="pet-row" key={pet._id}>

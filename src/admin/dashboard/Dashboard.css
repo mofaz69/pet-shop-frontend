@@ -22,3 +22,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.dashboard-title {
+  text-align: center;
+}

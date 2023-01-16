@@ -25,8 +25,6 @@ export default function Search() {
   const [searchMode, setSearchMode] = useState("basic");
   const [adoptionStatus, setAdoptionStatus] = useState("all");
 
-  // const [advancedSearchMode, setAdvancedSearchMode] = useState("advanced");
-
   const filteredPets = pets.filter((pet) => {
     if (searchMode === "basic") {
       return pet.type.toLowerCase().includes(searchType.toLowerCase());

@@ -7,10 +7,8 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  border-top: 15px solid rgb(59 113 202);
-  border-bottom: 15px solid rgb(59 113 202);
-  border-right: 30px solid rgb(59 113 202);
-  border-left: 30px solid rgb(59 113 202);
+  border-top: 5px solid rgb(59 113 202);
+  border-bottom: 5px solid rgb(59 113 202);
 }
 
 .titles {
@@ -18,7 +16,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 8rem;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
   color: rgb(245 245 245);
   text-shadow: 2px 2px 4px #000000;
 }
@@ -39,16 +38,17 @@
   gap: 2rem;
   justify-content: center;
   padding-top: 2rem;
-  background-color: #c8c8c8;
-  border-bottom: 15px solid rgb(59 113 202);
-  border-right: 30px solid rgb(59 113 202);
-  border-left: 30px solid rgb(59 113 202);
+  background-color: #e8e8e8;
+  border-bottom: 5px solid rgb(59 113 202);
+  border-left: 5px solid rgb(59 113 202);
+  border-right: 5px solid rgb(59 113 202);
   height: 12rem;
 }
 
 .square-button {
   width: 7rem;
   height: 7rem;
+  text-shadow: 2px 2px 4px #000000;
 }
 .square-button-cat {
   width: 7rem;
@@ -56,12 +56,14 @@
   color: blue;
   background: url(https://www.creativefabrica.com/wp-content/uploads/2021/01/26/Cat-Icon-Graphics-8071439-1.jpg)
     no-repeat center 30% / cover;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .square-button-dog {
   width: 7rem;
   height: 7rem;
-  color: blue;
+  color: #000000;
   background: url(https://media.istockphoto.com/id/1200951618/vector/china-new-year-related-dog-face-vector-in-lineal-style.jpg?b=1&s=612x612&w=0&k=20&c=uVu-iF7SLZYGk0ndfT14bOHDa4tnqMI8R5ktQEE0AJw=)
     no-repeat center 30% / cover;
+  text-shadow: 2px 2px 4px #000000;
 }

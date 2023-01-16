@@ -19,23 +19,23 @@ export default function Home() {
           <h1>Welcome to eXtreme Adopted!</h1>
         </div>
         <div className="pText">
-          <p>
+          <h5>
             Here you can find the most crazy and extreme pet adoption place
             around the world.
             <br />
             Don't believe me? Check out our App and find out by yourself!
-          </p>
+          </h5>
         </div>
       </div>
 
       <div className="home-buttons">
         <Link to="/search">
-          <Button variant="primary" className="square-button-dog">
+          <Button variant="outline-secondary" className="square-button-dog">
             Dogs
           </Button>{" "}
         </Link>
         <Link to="/search">
-          <Button variant="primary" className="square-button-cat">
+          <Button variant="outline-secondary" className="square-button-cat">
             Cats
           </Button>{" "}
         </Link>

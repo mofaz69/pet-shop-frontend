@@ -5,4 +5,5 @@
   padding-left: var(--mdb-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
+  padding-top: 1rem;
 }
