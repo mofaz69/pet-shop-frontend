@@ -28,16 +28,24 @@ export default function Home() {
 
       <div className="home-buttons">
         <Link to="/search">
-          <Button variant="primary">Dogs</Button>{" "}
+          <Button variant="primary" className="square-button-dog">
+            Dogs
+          </Button>{" "}
         </Link>
         <Link to="/search">
-          <Button variant="primary">Cats</Button>{" "}
+          <Button variant="primary" className="square-button-cat">
+            Cats
+          </Button>{" "}
         </Link>
         <Link to="/search">
-          <Button variant="primary">Search pets</Button>{" "}
+          <Button variant="primary" className="square-button">
+            Search pets
+          </Button>{" "}
         </Link>
         <Link to="/pets">
-          <Button variant="primary">View all our pets</Button>{" "}
+          <Button variant="primary" className="square-button">
+            View all our pets
+          </Button>{" "}
         </Link>
       </div>
     </div>
