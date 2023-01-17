@@ -7,11 +7,7 @@ import { PetContext } from "../context/petContext";
 
 export default function Home() {
   const { isLoggedIn, user } = useContext(AuthContext);
-  const { pets, setPets } = useContext(PetContext);
-
-  function handleFilterClick(type) {
-    setPets(pets.filter((pet) => pet.type === type));
-  }
+  const { pets } = useContext(PetContext);
 
   return (
     <div className="homeContainer">
@@ -35,27 +31,19 @@ export default function Home() {
 
       <div className="home-buttons">
         <Link to="/search/dog">
-          <Button
-            variant="outline-secondary"
-            className="square-button-dog"
-            onClick={() => handleFilterClick("dog")}
-          >
+          <Button variant="outline-secondary" className="square-button-dog">
             Dogs
           </Button>{" "}
         </Link>
         <Link to="/search/cat">
-          <Button
-            variant="outline-secondary"
-            className="square-button-cat"
-            onClick={() => handleFilterClick("cat")}
-          >
+          <Button variant="outline-secondary" className="square-button-cat">
             Cats
-          </Button>{" "}
+          </Button>
         </Link>
         <Link to="/search">
           <Button variant="primary" className="square-button">
             Search pets
-          </Button>{" "}
+          </Button>
         </Link>
         <Link to="/my-pets">
           <Button variant="primary" className="square-button">

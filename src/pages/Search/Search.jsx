@@ -4,10 +4,12 @@ import { MDBInputGroup, MDBInput, MDBRadio } from "mdb-react-ui-kit";
 import PetList from "../../components/PetList/PetList";
 import { PetContext } from "../../context/petContext";
 import Form from "react-bootstrap/Form";
+import { useParams } from "react-router-dom";
 
 export default function Search() {
   const { pets } = useContext(PetContext);
-  const [searchType, setSearchType] = useState("");
+  const { type } = useParams();
+  const [searchType, setSearchType] = useState(type || "");
   const [searchName, setSearchName] = useState("");
 
   const [minHeight, setMinHeight] = useState(0);
