@@ -12,20 +12,22 @@ export default function Home() {
   return (
     <div className="homeContainer">
       <div className="homeStructure">
-        <div className="titles">
-          {isLoggedIn ? (
-            <h1> Welcome {user.firstName + " " + user.lastName}</h1>
-          ) : null}
-
-          <h1>Welcome to eXtreme Adopted!</h1>
-        </div>
-        <div className="pText">
-          <h5>
-            Here you can find the most crazy and extreme pet adoption place
-            around the world.
-            <br />
-            Don't believe me? Check out our App and find out by yourself!
-          </h5>
+        <div>
+          <div className="titles">
+            {isLoggedIn ? (
+              <h1> Welcome {user.firstName + " " + user.lastName}</h1>
+            ) : (
+              <h1>Welcome to eXtreme Adopted!</h1>
+            )}
+          </div>
+          <div className="pText">
+            <h5>
+              Here you can find the most crazy and extreme pet adoption place
+              around the world.
+              <br />
+              Don't believe me? Check out our App and find out by yourself!
+            </h5>
+          </div>
         </div>
       </div>
 

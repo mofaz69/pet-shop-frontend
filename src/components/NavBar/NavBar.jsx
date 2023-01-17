@@ -19,64 +19,62 @@ export default function NavBar() {
   return (
     <div className="navBar-container">
       <Navbar>
-        <Container>
-          <Link className="nav-link" to="/">
-            Home
-          </Link>
+        <Link className="nav-link" to="/">
+          Home
+        </Link>
 
-          <Nav className="me-auto">
-            {isLoggedIn ? (
-              <Link className="nav-link" to="/profile">
-                Profile
+        <Nav className="me-auto">
+          {isLoggedIn ? (
+            <Link className="nav-link nav-text-color" to="/profile">
+              Profile
+            </Link>
+          ) : null}
+          <div className="search-button">
+            {location.pathname === "/" ? null : (
+              <Link className="nav-link nav-text-color" to="/search">
+                Search
               </Link>
-            ) : null}
-            <div className="search-button">
-              {location.pathname === "/" ? null : (
-                <Link className="nav-link" to="/search">
-                  Search
-                </Link>
-              )}
-            </div>
-            {/* <Link className="nav-link" to="/my-pets">
-              My Pets
-            </Link> */}
-          </Nav>
-          <div className="right-NavBar">
-            {!isLoggedIn ? (
-              <>
-                <Link
-                  className="nav-link"
-                  onClick={() => setShowLogin((prev) => !prev)}
-                >
-                  Login
-                </Link>
-
-                <Link
-                  className="nav-link"
-                  onClick={() => setShowSignup((prev) => !prev)}
-                >
-                  Sign-Up
-                </Link>
-              </>
-            ) : (
-              <>
-                {user.isAdmin ? (
-                  <>
-                    <Link className="nav-link" to="add-pet">
-                      Add Pet
-                    </Link>
-                    <Link className="nav-link" to="dashboard">
-                      Dashboard
-                    </Link>
-                  </>
-                ) : null}
-                <Link className="nav-link" onClick={() => logout()}>
-                  Logout
-                </Link>
-              </>
             )}
           </div>
-        </Container>
+          {/* <Link className="nav-link" to="/my-pets">
+              My Pets
+            </Link> */}
+        </Nav>
+        <div className="right-NavBar">
+          {!isLoggedIn ? (
+            <>
+              <Link
+                className="nav-link"
+                onClick={() => setShowLogin((prev) => !prev)}
+              >
+                Login
+              </Link>
+
+              <Link
+                className="nav-link"
+                onClick={() => setShowSignup((prev) => !prev)}
+              >
+                Sign-Up
+              </Link>
+            </>
+          ) : (
+            <>
+              {user.isAdmin ? (
+                <>
+                  <Link className="nav-link" to="add-pet">
+                    Add Pet
+                  </Link>
+                  <Link className="nav-link" to="dashboard">
+                    Dashboard
+                  </Link>
+                </>
+              ) : null}
+              <Link className="nav-link" onClick={() => logout()}>
+                Logout
+              </Link>
+            </>
+          )}
+        </div>
       </Navbar>
       <ModalBox show={showLogin} setShow={setShowLogin} showConfirm={false}>
         <SignIn setShowLogin={setShowLogin} />

@@ -4,6 +4,7 @@
   gap: 7px;
   width: 90%;
   margin: 0 auto;
+  max-width: 1100px;
 }
 #dashboard .user-row {
   display: flex;
@@ -25,4 +26,5 @@
 
 .dashboard-title {
   text-align: center;
+  margin-top: 3rem;
 }

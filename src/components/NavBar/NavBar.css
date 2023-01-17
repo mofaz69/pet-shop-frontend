@@ -11,3 +11,7 @@
   position: absolute;
   right: 0;
 }
+
+.nav-text-color {
+  color: rgb(59 113 202) !important;
+}

@@ -34,38 +34,42 @@ export function Dashboard() {
 
       <br />
       <h2 className="dashboard-title">Users</h2>
-      <div className="user-table">
-        <div className="user-row">
-          <span>First Name</span>
-          <span>Last Name</span>
-          <span>Phone</span>
-          <span>Email</span>
-          <span>Pets</span>
+      {users.length === 0 ? (
+        <h3 className="text-center">Loading...</h3>
+      ) : (
+        <div className="user-table">
+          <div className="user-row">
+            <span>First Name</span>
+            <span>Last Name</span>
+            <span>Phone</span>
+            <span>Email</span>
+            <span>Pets</span>
+          </div>
+          {users.map((user) => {
+            return (
+              <React.Fragment key={user._id}>
+                <div className="user-row">
+                  <span>{user.firstName}</span>
+                  <span>{user.lastName}</span>
+                  <span>{user.phoneNumber}</span>
+                  <span>{user.email}</span>
+                  <span>
+                    <Button
+                      variant="primary"
+                      onClick={() => setSelectedUser(user._id)}
+                    >
+                      Show Pets
+                    </Button>
+                  </span>
+                </div>
+                {selectedUser === user._id ? (
+                  <PetList pets={ownedPets[selectedUser]} />
+                ) : null}
+              </React.Fragment>
+            );
+          })}
         </div>
-        {users.map((user) => {
-          return (
-            <React.Fragment key={user._id}>
-              <div className="user-row">
-                <span>{user.firstName}</span>
-                <span>{user.lastName}</span>
-                <span>{user.phoneNumber}</span>
-                <span>{user.email}</span>
-                <span>
-                  <Button
-                    variant="primary"
-                    onClick={() => setSelectedUser(user._id)}
-                  >
-                    Show Pets
-                  </Button>
-                </span>
-              </div>
-              {selectedUser === user._id ? (
-                <PetList pets={ownedPets[selectedUser]} />
-              ) : null}
-            </React.Fragment>
-          );
-        })}
-      </div>
+      )}
       <br />
       <h2 className="dashboard-title">Pets</h2>
       {pets.map((pet) => {

@@ -28,6 +28,7 @@ export default function Profile() {
         phoneNumber,
       };
       await updateUser(updatedUser);
+      alert("Updated successfully");
     } catch (error) {
       console.log(error);
       alert(error.message);
@@ -35,7 +36,7 @@ export default function Profile() {
   };
 
   if (!user) {
-    return <div>Please login to view this page</div>;
+    return <div className="pleaseLogin">Please login to view this page</div>;
   }
 
   return (
