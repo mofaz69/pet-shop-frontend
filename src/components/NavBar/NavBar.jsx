@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./NavBar.css";
 import { ModalBox } from "../Modal/Modal";
 import Container from "react-bootstrap/Container";
@@ -14,6 +14,7 @@ export default function NavBar() {
   const { isLoggedIn, logout, user } = useContext(AuthContext);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+  const location = useLocation();
 
   return (
     <div className="navBar-container">
@@ -28,10 +29,13 @@ export default function NavBar() {
                 Profile
               </Link>
             ) : null}
-
-            <Link className="nav-link" to="/search">
-              Search
-            </Link>
+            <div className="search-button">
+              {location.pathname === "/" ? null : (
+                <Link className="nav-link" to="/search">
+                  Search
+                </Link>
+              )}
+            </div>
             {/* <Link className="nav-link" to="/my-pets">
               My Pets
             </Link> */}

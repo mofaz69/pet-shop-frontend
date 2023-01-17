@@ -26,7 +26,7 @@ export const MyPets = () => {
         <Button variant="primary" onClick={() => setMode("adopted")}>
           My Adopted Pets
         </Button>{" "}
-        <Button variant="primary" onClick={() => setMode("saved")}>
+        <Button variant="outline-primary" onClick={() => setMode("saved")}>
           My Saved Pets
         </Button>
       </div>

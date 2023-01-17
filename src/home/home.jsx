@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/authContext";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router-dom";
-
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { PetContext } from "../context/petContext";
 
 export default function Home() {
   const { isLoggedIn, user } = useContext(AuthContext);
-  // const { petType } = useContext(PetContext);
-  // const { dog } = useParams();
-  // const searchDog = petType.find((p) => p._id === dog);
+  const { pets, setPets } = useContext(PetContext);
+
+  function handleFilterClick(type) {
+    setPets(pets.filter((pet) => pet.type === type));
+  }
 
   return (
     <div className="homeContainer">
@@ -35,12 +35,20 @@ export default function Home() {
 
       <div className="home-buttons">
         <Link to="/search/dog">
-          <Button variant="outline-secondary" className="square-button-dog">
+          <Button
+            variant="outline-secondary"
+            className="square-button-dog"
+            onClick={() => handleFilterClick("dog")}
+          >
             Dogs
           </Button>{" "}
         </Link>
         <Link to="/search/cat">
-          <Button variant="outline-secondary" className="square-button-cat">
+          <Button
+            variant="outline-secondary"
+            className="square-button-cat"
+            onClick={() => handleFilterClick("cat")}
+          >
             Cats
           </Button>{" "}
         </Link>
