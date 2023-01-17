@@ -25,7 +25,7 @@ export default function Home() {
               Here you can find the most crazy and extreme pet adoption place
               around the world.
               <br />
-              Don't believe me? Check out our App and find out by yourself!
+              Don't believe me? Check out our App and find out yourself!
             </h5>
           </div>
         </div>
