@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-// default state - not logged in
-export const AuthContext = React.createContext({
+const defaultState = {
   isLoggedIn: false,
   user: undefined,
-});
+};
+export const AuthContext = React.createContext(defaultState);
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();

@@ -23,6 +23,7 @@ export default function NavBar() {
           <Link className="nav-link" to="/">
             Home
           </Link>
+
           <Nav className="me-auto">
             {isLoggedIn ? (
               <Link className="nav-link" to="/profile">
@@ -39,42 +40,42 @@ export default function NavBar() {
             {/* <Link className="nav-link" to="/my-pets">
               My Pets
             </Link> */}
-            <div className="right-NavBar">
-              {!isLoggedIn ? (
-                <>
-                  <Link
-                    className="nav-link"
-                    onClick={() => setShowLogin((prev) => !prev)}
-                  >
-                    Login
-                  </Link>
-
-                  <Link
-                    className="nav-link"
-                    onClick={() => setShowSignup((prev) => !prev)}
-                  >
-                    Sign-Up
-                  </Link>
-                </>
-              ) : (
-                <>
-                  {user.isAdmin ? (
-                    <>
-                      <Link className="nav-link" to="add-pet">
-                        Add Pet
-                      </Link>
-                      <Link className="nav-link" to="dashboard">
-                        Dashboard
-                      </Link>
-                    </>
-                  ) : null}
-                  <Link className="nav-link" onClick={() => logout()}>
-                    Logout
-                  </Link>
-                </>
-              )}
-            </div>
           </Nav>
+          <div className="right-NavBar">
+            {!isLoggedIn ? (
+              <>
+                <Link
+                  className="nav-link"
+                  onClick={() => setShowLogin((prev) => !prev)}
+                >
+                  Login
+                </Link>
+
+                <Link
+                  className="nav-link"
+                  onClick={() => setShowSignup((prev) => !prev)}
+                >
+                  Sign-Up
+                </Link>
+              </>
+            ) : (
+              <>
+                {user.isAdmin ? (
+                  <>
+                    <Link className="nav-link" to="add-pet">
+                      Add Pet
+                    </Link>
+                    <Link className="nav-link" to="dashboard">
+                      Dashboard
+                    </Link>
+                  </>
+                ) : null}
+                <Link className="nav-link" onClick={() => logout()}>
+                  Logout
+                </Link>
+              </>
+            )}
+          </div>
         </Container>
       </Navbar>
       <ModalBox show={showLogin} setShow={setShowLogin} showConfirm={false}>

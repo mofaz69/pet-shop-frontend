@@ -13,7 +13,7 @@ import Login from "./SignIn/SignIn";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <NavBar path="/" />
       <Routes>
         <Route path="/" element={<Home />}></Route>

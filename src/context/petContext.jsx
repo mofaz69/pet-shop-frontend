@@ -3,7 +3,6 @@ import { useContext } from "react";
 import PetList from "../components/PetList/PetList";
 import { AuthContext } from "./authContext";
 
-// default state - not logged in
 export const PetContext = React.createContext({
   pets: [],
   adoptPet: () => {},
@@ -124,11 +123,6 @@ export function PetContextProvider({ children }) {
       return updatedPets;
     });
   };
-
-  // const deletePet = (petId) => {
-  //   const newArray = PetList.filter((pet) => pet._id !== petId);
-  //   setPetList(newArray);
-  // };
 
   const value = {
     pets,
