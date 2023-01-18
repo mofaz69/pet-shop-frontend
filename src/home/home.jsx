@@ -7,7 +7,6 @@ import { PetContext } from "../context/petContext";
 
 export default function Home() {
   const { isLoggedIn, user } = useContext(AuthContext);
-  const { pets } = useContext(PetContext);
 
   return (
     <div className="homeContainer">
