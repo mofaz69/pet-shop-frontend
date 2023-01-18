@@ -36,9 +36,6 @@ export default function NavBar() {
               </Link>
             )}
           </div>
-          {/* <Link className="nav-link" to="/my-pets">
-              My Pets
-            </Link> */}
         </Nav>
         <div className="right-NavBar">
           {!isLoggedIn ? (
