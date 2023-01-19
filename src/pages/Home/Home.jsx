@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/authContext";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 import Button from "react-bootstrap/Button";
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { PetContext } from "../context/petContext";
 
 export default function Home() {
   const { isLoggedIn, user } = useContext(AuthContext);
