@@ -87,6 +87,7 @@ export function PetContextProvider({ children }) {
     }
   };
 
+  // load all pets on startup
   useEffect(() => {
     getAllPets();
   }, []);

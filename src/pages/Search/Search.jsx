@@ -25,8 +25,6 @@ export default function Search() {
       return pet.type.toLowerCase().includes(searchType.toLowerCase());
     }
 
-    console.log(typeof pet.weight, pet.height);
-
     return (
       pet.type.toLowerCase().includes(searchType.toLowerCase()) &&
       pet.name.toLowerCase().includes(searchName.toLowerCase()) &&
