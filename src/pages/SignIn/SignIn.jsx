@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../../context/authContext";
 import "./SignIn.css";
 
 export default function SignIn({ setShowLogin }) {

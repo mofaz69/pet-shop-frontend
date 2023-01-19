@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../../context/authContext";
 import "./SignUp.css";
 
 export default function SignUp({ setShowSignup }) {

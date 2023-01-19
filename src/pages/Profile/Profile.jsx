@@ -3,7 +3,7 @@ import "./Profile.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useContext } from "react";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../../context/authContext";
 
 export default function Profile() {
   const { user, updateUser } = useContext(AuthContext);

@@ -3,11 +3,10 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./NavBar.css";
 import { ModalBox } from "../Modal/Modal";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import SignIn from "../../SignIn/SignIn";
-import SignUp from "../../SignUp/SignUp";
+import SignIn from "../../pages/SignIn/SignIn";
+import SignUp from "../../pages/SignUp/SignUp";
 import { AuthContext } from "../../context/authContext";
 
 export default function NavBar() {

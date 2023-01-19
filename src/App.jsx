@@ -1,15 +1,14 @@
-import { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home/Home";
 import Search from "./pages/Search/Search";
 import Pet from "./pages/Pet/Pet";
-import Profile from "./Profile/Profile";
+import Profile from "./pages/Profile/Profile";
 import NavBar from "./components/NavBar/NavBar";
 import { AddEditPet } from "./Admin/AddEditPet/AddEditPet";
 import { Dashboard } from "./Admin/Dashboard/Dashboard";
 import { MyPets } from "./pages/MyPets/MyPets";
-import Login from "./SignIn/SignIn";
+import Login from "./pages/SignIn/SignIn";
 
 function App() {
   return (
