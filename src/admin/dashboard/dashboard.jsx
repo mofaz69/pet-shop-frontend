@@ -11,7 +11,7 @@ export function Dashboard() {
   const { pets } = useContext(PetContext);
   const [users, setUsers] = useState([]);
   const [ownedPets, setOwnedPets] = useState();
-  const [selectedUser, setSelectedUser] = useState();
+  const [selectedUserId, setSelectedUserId] = useState();
 
   useEffect(() => {
     fetch("http://localhost:3001/user", {
@@ -55,14 +55,14 @@ export function Dashboard() {
                   <span>
                     <Button
                       variant="primary"
-                      onClick={() => setSelectedUser(user._id)}
+                      onClick={() => setSelectedUserId(user._id)}
                     >
                       Show Pets
                     </Button>
                   </span>
                 </div>
-                {selectedUser === user._id ? (
-                  <PetList pets={ownedPets[selectedUser]} />
+                {selectedUserId === user._id ? (
+                  <PetList pets={ownedPets[selectedUserId]} />
                 ) : null}
               </React.Fragment>
             );

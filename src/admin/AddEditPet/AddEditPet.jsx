@@ -12,7 +12,7 @@ export function AddEditPet() {
   const { user, isLoggedIn } = useContext(AuthContext);
   const { addPet, pets, editPet } = useContext(PetContext);
   const navigate = useNavigate();
-  const { petId } = useParams();
+  const { petId } = useParams(); // only exist in edit mode
   const editedPet = pets.find((p) => p._id === petId);
 
   useEffect(() => {
@@ -23,7 +23,8 @@ export function AddEditPet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formElement = e.target;
+    const formData = new FormData(formElement);
     const type = formData.get("type");
     const name = formData.get("name");
     const owner = formData.get("owner");
