@@ -2,6 +2,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .homeStructure {
   background: url(https://i.cbc.ca/1.5077459.1553886010!/fileImage/httpImage/pets.jpg)
@@ -11,8 +12,8 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  min-width: 1000px;
-  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
   flex: 1;
 
   text-shadow: 5px 3px 10px #fff;
