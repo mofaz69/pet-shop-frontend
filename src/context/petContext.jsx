@@ -92,6 +92,21 @@ export function PetContextProvider({ children }) {
     getAllPets();
   }, []);
 
+  const searchPets = async (query) => {
+    const response = await fetch("http://localhost:3001/pet/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(query),
+    });
+    const searchResults = await response.json();
+    if (response.status !== 200) {
+      throw new Error(searchResults.message);
+    }
+    return searchResults;
+  };
+
   const addPet = async (pet) => {
     const response = await fetch("http://localhost:3001/pet", {
       method: "POST",
@@ -118,6 +133,7 @@ export function PetContextProvider({ children }) {
     if (response.status !== 200) {
       throw new Error(editedPet.message);
     }
+    console.log(editedPet);
     setPets((prevPets) => {
       const updatedPets = [...prevPets];
       const index = prevPets.findIndex((p) => p._id === editedPet._id);
@@ -134,6 +150,7 @@ export function PetContextProvider({ children }) {
     setPets,
     addPet,
     editPet,
+    searchPets,
     removePetFromUser,
   };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;

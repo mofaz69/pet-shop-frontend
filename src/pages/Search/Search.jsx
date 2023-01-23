@@ -5,9 +5,11 @@ import PetList from "../../components/PetList/PetList";
 import { PetContext } from "../../context/petContext";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
 
 export default function Search() {
-  const { pets } = useContext(PetContext);
+  const { pets, searchPets } = useContext(PetContext);
+  const [searchResults, setSearchResults] = useState([]);
   const { type } = useParams();
   const [searchType, setSearchType] = useState(type || "");
   const [searchName, setSearchName] = useState("");
@@ -20,25 +22,43 @@ export default function Search() {
   const [searchMode, setSearchMode] = useState("basic");
   const [adoptionStatus, setAdoptionStatus] = useState("all");
 
-  const filteredPets = pets.filter((pet) => {
-    if (searchMode === "basic") {
-      return pet.type.toLowerCase().includes(searchType.toLowerCase());
-    }
+  // const filteredPets = pets.filter((pet) => {
+  //   if (searchMode === "basic") {
+  //     return pet.type.toLowerCase().includes(searchType.toLowerCase());
+  //   }
 
-    return (
-      pet.type.toLowerCase().includes(searchType.toLowerCase()) &&
-      pet.name.toLowerCase().includes(searchName.toLowerCase()) &&
-      (adoptionStatus === "all"
-        ? true
-        : adoptionStatus === "available"
-        ? pet.owner === ""
-        : pet.owner) &&
-      +pet.weight >= minWeight &&
-      +pet.weight <= maxWeight &&
-      +pet.height >= minHeight &&
-      +pet.height <= maxHeight
-    );
-  });
+  //   return (
+  //     pet.type.toLowerCase().includes(searchType.toLowerCase()) &&
+  //     pet.name.toLowerCase().includes(searchName.toLowerCase()) &&
+  //     (adoptionStatus === "all"
+  //       ? true
+  //       : adoptionStatus === "available"
+  //       ? pet.owner === ""
+  //       : pet.owner) &&
+  //     +pet.weight >= minWeight &&
+  //     +pet.weight <= maxWeight &&
+  //     +pet.height >= minHeight &&
+  //     +pet.height <= maxHeight
+  //   );
+  // });
+
+  const handleSearch = async () => {
+    const query = {
+      type: searchType,
+      name: searchName,
+      minHeight,
+      maxHeight,
+      minWeight,
+      maxWeight,
+      adoptionStatus,
+    };
+    console.log(query);
+    const pets = await searchPets(query);
+    if (pets.length === 0) {
+      return alert("No pets found");
+    }
+    setSearchResults(pets);
+  };
 
   return (
     <div>
@@ -134,8 +154,13 @@ export default function Search() {
             </>
           ) : null}
         </div>
+        <div>
+          <Button onClick={handleSearch} variant="primary">
+            Search
+          </Button>
+        </div>
       </div>
-      <PetList pets={filteredPets} />
+      <PetList pets={searchResults.length ? searchResults : pets} />
     </div>
   );
 }
