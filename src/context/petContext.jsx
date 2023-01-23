@@ -95,9 +95,8 @@ export function PetContextProvider({ children }) {
   const addPet = async (pet) => {
     const response = await fetch("http://localhost:3001/pet", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify(pet),
+      body: pet,
     });
     const newPet = await response.json();
     if (response.status !== 200) {
@@ -107,20 +106,22 @@ export function PetContextProvider({ children }) {
   };
 
   const editPet = async (pet) => {
-    const response = await fetch(`http://localhost:3001/pet/${pet._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify(pet),
-    });
+    const response = await fetch(
+      `http://localhost:3001/pet/${pet.get("_id")}`,
+      {
+        method: "PUT",
+        credentials: "include",
+        body: pet,
+      }
+    );
     const editedPet = await response.json();
     if (response.status !== 200) {
       throw new Error(editedPet.message);
     }
     setPets((prevPets) => {
       const updatedPets = [...prevPets];
-      const index = prevPets.findIndex((p) => p._id === pet._id);
-      updatedPets[index] = pet;
+      const index = prevPets.findIndex((p) => p._id === editedPet._id);
+      updatedPets[index] = editedPet;
       return updatedPets;
     });
   };

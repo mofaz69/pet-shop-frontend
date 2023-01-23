@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -11,6 +11,7 @@ import "./AddEditPet.css";
 export function AddEditPet() {
   const { user, isLoggedIn } = useContext(AuthContext);
   const { addPet, pets, editPet } = useContext(PetContext);
+  const [image, setImage] = useState();
   const navigate = useNavigate();
   const { petId } = useParams(); // only exist in edit mode
   const editedPet = pets.find((p) => p._id === petId);
@@ -24,37 +25,21 @@ export function AddEditPet() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formElement = e.target;
-    const formData = new FormData(formElement);
-    const type = formData.get("type");
-    const name = formData.get("name");
-    const owner = formData.get("owner");
-    const imageUrl = formData.get("image");
-    const height = formData.get("height");
-    const weight = formData.get("weight");
-    const color = formData.get("color");
-    const bio = formData.get("bio");
-    const hypoallergenic = formData.get("hypoallergenic");
-    const dietaryRestrictions = formData.get("dietaryRestrictions");
-    const breed = formData.get("breed");
-    const petData = {
-      type,
-      name,
-      owner,
-      imageUrl,
-      height,
-      weight,
-      color,
-      bio,
-      hypoallergenic,
-      dietaryRestrictions,
-      breed,
-    };
+    const petFormData = new FormData(formElement);
+    const hasImage = image && image[0];
+    if (hasImage) {
+      petFormData.append("image", image[0]);
+    }
 
     try {
       if (petId) {
-        await editPet({ _id: petId, ...petData });
+        petFormData.append("_id", petId);
+        if (!hasImage) {
+          petFormData.append("imageUrl", editedPet.imageUrl);
+        }
+        await editPet(petFormData);
       } else {
-        await addPet(petData);
+        await addPet(petFormData);
       }
       navigate("/search");
     } catch (error) {
@@ -94,12 +79,11 @@ export function AddEditPet() {
           />
         </Form.Group>
         <Form.Group as={Col} controlId="Image">
-          <Form.Label>Add Image</Form.Label>
+          <Form.Label>Upload Image</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Animal Photo"
+            type="file"
             name="image"
-            defaultValue={editedPet?.picture || editedPet?.imageUrl || ""}
+            onChange={(e) => setImage(e.target.value)}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="animalHeight">
