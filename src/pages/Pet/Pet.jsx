@@ -8,8 +8,14 @@ import { AuthContext } from "../../context/authContext";
 
 export default function Pet() {
   const { petId } = useParams();
-  const { pets, adoptPet, returnPet, savePetToUser, removePetFromUser } =
-    useContext(PetContext);
+  const {
+    pets,
+    adoptPet,
+    returnPet,
+    savePetToUser,
+    fosterPetToUser,
+    removePetFromUser,
+  } = useContext(PetContext);
   const { user } = useContext(AuthContext);
   const pet = pets.find((pet) => petId === pet._id);
   if (!pet) {
@@ -18,6 +24,10 @@ export default function Pet() {
 
   const handleAddToSavedPets = () => {
     savePetToUser(petId);
+  };
+
+  const handleAddToFosterPets = () => {
+    fosterPetToUser(petId);
   };
 
   const handleRemoveFromSavedPets = () => {
@@ -51,6 +61,12 @@ export default function Pet() {
             {!pet.owner ? (
               <Button variant="primary" onClick={() => adoptPet(petId)}>
                 Adopt {pet.name}!
+              </Button>
+            ) : null}
+
+            {!pet.owner ? (
+              <Button variant="primary" onClick={handleAddToFosterPets}>
+                Foster {pet.name}!
               </Button>
             ) : null}
 

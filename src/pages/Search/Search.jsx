@@ -61,7 +61,7 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <div className="search-location">
         <MDBInputGroup>
           <MDBRadio
@@ -149,6 +149,7 @@ export default function Search() {
                   <option value="all">Adoption Status</option>
                   <option value="available">Available</option>
                   <option value="adopted">Adopted</option>
+                  <option value="adopted">Foster</option>
                 </Form.Select>
               </Form.Group>
             </>
