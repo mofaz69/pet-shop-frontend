@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Search.css";
 import { MDBInputGroup, MDBInput, MDBRadio } from "mdb-react-ui-kit";
 import PetList from "../../components/PetList/PetList";
@@ -42,7 +42,7 @@ export default function Search() {
   //   );
   // });
 
-  const handleSearch = async () => {
+  const search = async () => {
     const query = {
       type: searchType,
       name: searchName,
@@ -59,6 +59,18 @@ export default function Search() {
     }
     setSearchResults(pets);
   };
+
+  useEffect(() => {
+    search();
+  }, [
+    searchType,
+    searchName,
+    minHeight,
+    maxHeight,
+    minWeight,
+    maxWeight,
+    adoptionStatus,
+  ]);
 
   return (
     <div className="search-container">
@@ -154,11 +166,6 @@ export default function Search() {
               </Form.Group>
             </>
           ) : null}
-        </div>
-        <div>
-          <Button onClick={handleSearch} variant="primary">
-            Search
-          </Button>
         </div>
       </div>
       <PetList pets={searchResults.length ? searchResults : pets} />
