@@ -6,6 +6,7 @@ import { AuthContext } from "./authContext";
 export const PetContext = React.createContext({
   pets: [],
   adoptPet: () => {},
+  fosterPet: () => {},
 });
 
 export function PetContextProvider({ children }) {
@@ -39,6 +40,23 @@ export function PetContextProvider({ children }) {
     });
   };
 
+  const fosterPet = async (petId) => {
+    const response = await fetch(`http://localhost:3001/pet/${petId}/foster`, {
+      method: "POST",
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    alert(data.message);
+
+    setPets((pets) => {
+      const updatedPets = [...pets];
+      const petIndex = updatedPets.findIndex((p) => p._id === petId);
+      updatedPets[petIndex].fosterer = user._id;
+      return updatedPets;
+    });
+  };
+
   const returnPet = async (petId) => {
     const response = await fetch(`http://localhost:3001/pet/${petId}/return`, {
       method: "POST",
@@ -52,6 +70,24 @@ export function PetContextProvider({ children }) {
       const updatedPets = [...pets];
       const petIndex = updatedPets.findIndex((p) => p._id === petId);
       updatedPets[petIndex].owner = "";
+      return updatedPets;
+    });
+  };
+  const returnPetFromFoster = async (petId) => {
+    const response = await fetch(
+      `http://localhost:3001/pet/${petId}/return-foster`,
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
+
+    const data = await response.json();
+
+    setPets((pets) => {
+      const updatedPets = [...pets];
+      const petIndex = updatedPets.findIndex((p) => p._id === petId);
+      updatedPets[petIndex].fosterer = "";
       return updatedPets;
     });
   };
@@ -145,6 +181,7 @@ export function PetContextProvider({ children }) {
   const value = {
     pets,
     adoptPet,
+    fosterPet,
     savePetToUser,
     returnPet,
     setPets,
@@ -152,6 +189,7 @@ export function PetContextProvider({ children }) {
     editPet,
     searchPets,
     removePetFromUser,
+    returnPetFromFoster,
   };
   return <PetContext.Provider value={value}>{children}</PetContext.Provider>;
 }

@@ -16,7 +16,11 @@ export const PetCard = ({ pet }) => {
         <Card.Body>
           <Card.Title>{pet.name}</Card.Title>
           <Card.Body>
-            {pet.owner ? "Adopted" : "Available for adoption"}
+            {pet.owner
+              ? "Adopted"
+              : pet.fosterer
+              ? "Foster"
+              : "Available for adoption"}
           </Card.Body>
           <Link to={"/mypet/" + pet._id}>
             <Button>Click To see more!</Button>

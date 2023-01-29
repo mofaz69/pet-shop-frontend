@@ -22,26 +22,6 @@ export default function Search() {
   const [searchMode, setSearchMode] = useState("basic");
   const [adoptionStatus, setAdoptionStatus] = useState("all");
 
-  // const filteredPets = pets.filter((pet) => {
-  //   if (searchMode === "basic") {
-  //     return pet.type.toLowerCase().includes(searchType.toLowerCase());
-  //   }
-
-  //   return (
-  //     pet.type.toLowerCase().includes(searchType.toLowerCase()) &&
-  //     pet.name.toLowerCase().includes(searchName.toLowerCase()) &&
-  //     (adoptionStatus === "all"
-  //       ? true
-  //       : adoptionStatus === "available"
-  //       ? pet.owner === ""
-  //       : pet.owner) &&
-  //     +pet.weight >= minWeight &&
-  //     +pet.weight <= maxWeight &&
-  //     +pet.height >= minHeight &&
-  //     +pet.height <= maxHeight
-  //   );
-  // });
-
   const search = async () => {
     const query = {
       type: searchType,
@@ -161,7 +141,7 @@ export default function Search() {
                   <option value="all">Adoption Status</option>
                   <option value="available">Available</option>
                   <option value="adopted">Adopted</option>
-                  <option value="adopted">Foster</option>
+                  <option value="foster">Foster</option>
                 </Form.Select>
               </Form.Group>
             </>

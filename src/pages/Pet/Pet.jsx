@@ -13,8 +13,9 @@ export default function Pet() {
     adoptPet,
     returnPet,
     savePetToUser,
-    fosterPetToUser,
+    fosterPet,
     removePetFromUser,
+    returnPetFromFoster,
   } = useContext(PetContext);
   const { user } = useContext(AuthContext);
   const pet = pets.find((pet) => petId === pet._id);
@@ -26,15 +27,12 @@ export default function Pet() {
     savePetToUser(petId);
   };
 
-  const handleAddToFosterPets = () => {
-    fosterPetToUser(petId);
-  };
-
   const handleRemoveFromSavedPets = () => {
     removePetFromUser(petId);
   };
 
   const isMyPet = user?._id === pet.owner;
+  const isFosteredByMe = user?._id === pet.fosterer;
   const isMySavedPet = user?.favoritePets.includes(petId);
 
   return (
@@ -58,21 +56,28 @@ export default function Pet() {
           <Card.Body>Dietary Restrictions: {pet.dietaryRestrictions}</Card.Body>
           <Card.Body>Breed: {pet.breed} </Card.Body>
           <div className="buttons">
-            {!pet.owner ? (
-              <Button variant="primary" onClick={() => adoptPet(petId)}>
-                Adopt {pet.name}!
-              </Button>
-            ) : null}
-
-            {!pet.owner ? (
-              <Button variant="primary" onClick={handleAddToFosterPets}>
-                Foster {pet.name}!
-              </Button>
+            {!pet.owner && !pet.fosterer && user ? (
+              <>
+                <Button variant="primary" onClick={() => adoptPet(petId)}>
+                  Adopt {pet.name}!
+                </Button>
+                <Button variant="primary" onClick={() => fosterPet(petId)}>
+                  Foster {pet.name}!
+                </Button>
+              </>
             ) : null}
 
             {isMyPet ? (
               <Button variant="primary" onClick={() => returnPet(petId)}>
                 Return {pet.name}
+              </Button>
+            ) : null}
+            {isFosteredByMe ? (
+              <Button
+                variant="primary"
+                onClick={() => returnPetFromFoster(petId)}
+              >
+                Return {pet.name} from foster
               </Button>
             ) : null}
 
