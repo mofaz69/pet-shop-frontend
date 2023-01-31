@@ -144,15 +144,18 @@ export function PetContextProvider({ children }) {
   };
 
   const addPet = async (pet) => {
+    // send pet to server
     const response = await fetch("http://localhost:3001/pet", {
       method: "POST",
       credentials: "include",
-      body: pet,
+      body: pet, // pet is formData instance, doesn't need to be stringified
     });
     const newPet = await response.json();
     if (response.status !== 200) {
       throw new Error(newPet.message);
     }
+
+    // update the react state in the frontend
     setPets((prevPets) => [...prevPets, newPet]);
   };
 

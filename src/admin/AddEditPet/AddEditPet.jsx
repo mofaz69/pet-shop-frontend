@@ -25,7 +25,9 @@ export function AddEditPet() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formElement = e.target;
+    // FormData constructor returns formData instance with the form data
     const petFormData = new FormData(formElement);
+
     const hasImage = image && image[0];
     if (hasImage) {
       petFormData.append("image", image[0]);
