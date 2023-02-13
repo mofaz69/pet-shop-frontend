@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import PetList from "../components/PetList/PetList";
+import { domain } from "../constants";
 import { AuthContext } from "./authContext";
 
 export const PetContext = React.createContext({
@@ -14,7 +14,7 @@ export function PetContextProvider({ children }) {
   const [pets, setPets] = useState([]);
 
   const getAllPets = async () => {
-    const response = await fetch("http://localhost:3001/pet");
+    const response = await fetch(`${domain}/pet`);
     const data = await response.json();
     if (response.status !== 200) {
       throw new Error(data.message);
@@ -24,7 +24,7 @@ export function PetContextProvider({ children }) {
   };
 
   const adoptPet = async (petId) => {
-    const response = await fetch(`http://localhost:3001/pet/${petId}/adopt`, {
+    const response = await fetch(`${domain}/pet/${petId}/adopt`, {
       method: "POST",
       credentials: "include",
     });
@@ -41,7 +41,7 @@ export function PetContextProvider({ children }) {
   };
 
   const fosterPet = async (petId) => {
-    const response = await fetch(`http://localhost:3001/pet/${petId}/foster`, {
+    const response = await fetch(`${domain}/pet/${petId}/foster`, {
       method: "POST",
       credentials: "include",
     });
@@ -58,7 +58,7 @@ export function PetContextProvider({ children }) {
   };
 
   const returnPet = async (petId) => {
-    const response = await fetch(`http://localhost:3001/pet/${petId}/return`, {
+    const response = await fetch(`${domain}/pet/${petId}/return`, {
       method: "POST",
       credentials: "include",
     });
@@ -74,13 +74,10 @@ export function PetContextProvider({ children }) {
     });
   };
   const returnPetFromFoster = async (petId) => {
-    const response = await fetch(
-      `http://localhost:3001/pet/${petId}/return-foster`,
-      {
-        method: "POST",
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`${domain}/pet/${petId}/return-foster`, {
+      method: "POST",
+      credentials: "include",
+    });
 
     const data = await response.json();
 
@@ -93,7 +90,7 @@ export function PetContextProvider({ children }) {
   };
 
   const savePetToUser = async (petId) => {
-    const response = await fetch(`http://localhost:3001/pet/${petId}/save`, {
+    const response = await fetch(`${domain}/pet/${petId}/save`, {
       method: "POST",
       credentials: "include",
     });
@@ -108,7 +105,7 @@ export function PetContextProvider({ children }) {
     }
   };
   const removePetFromUser = async (petId) => {
-    const response = await fetch(`http://localhost:3001/pet/${petId}/save`, {
+    const response = await fetch(`${domain}/pet/${petId}/save`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -129,7 +126,7 @@ export function PetContextProvider({ children }) {
   }, []);
 
   const searchPets = async (query) => {
-    const response = await fetch("http://localhost:3001/pet/search", {
+    const response = await fetch(`${domain}/pet/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -145,7 +142,7 @@ export function PetContextProvider({ children }) {
 
   const addPet = async (pet) => {
     // send pet to server
-    const response = await fetch("http://localhost:3001/pet", {
+    const response = await fetch(`${domain}/pet`, {
       method: "POST",
       credentials: "include",
       body: pet, // pet is formData instance, doesn't need to be stringified
@@ -160,14 +157,11 @@ export function PetContextProvider({ children }) {
   };
 
   const editPet = async (pet) => {
-    const response = await fetch(
-      `http://localhost:3001/pet/${pet.get("_id")}`,
-      {
-        method: "PUT",
-        credentials: "include",
-        body: pet,
-      }
-    );
+    const response = await fetch(`${domain}/pet/${pet.get("_id")}`, {
+      method: "PUT",
+      credentials: "include",
+      body: pet,
+    });
     const editedPet = await response.json();
     if (response.status !== 200) {
       throw new Error(editedPet.message);

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { domain } from "../constants";
 
 const defaultState = {
   isLoggedIn: false,
@@ -16,7 +17,7 @@ export function AuthContextProvider({ children }) {
   };
 
   const login = async (email, password) => {
-    const response = await fetch("http://localhost:3001/user/login", {
+    const response = await fetch(`${domain}/user/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -39,7 +40,7 @@ export function AuthContextProvider({ children }) {
     lastName,
     phoneNumber,
   }) => {
-    const response = await fetch("http://localhost:3001/user/signup", {
+    const response = await fetch(`${domain}/user/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -62,7 +63,7 @@ export function AuthContextProvider({ children }) {
   };
 
   const updateUser = async (updatedUserData) => {
-    const response = await fetch(`http://localhost:3001/user/${user._id}`, {
+    const response = await fetch(`${domain}/user/${user._id}`, {
       method: "PUT",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

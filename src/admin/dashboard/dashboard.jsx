@@ -4,6 +4,7 @@ import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import { PetCard } from "../../components/PetList/PetCard/PetCard";
 import PetList from "../../components/PetList/PetList";
+import { domain } from "../../constants";
 import { PetContext } from "../../context/petContext";
 import "./Dashboard.css";
 
@@ -14,7 +15,7 @@ export function Dashboard() {
   const [selectedUserId, setSelectedUserId] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:3001/user", {
+    fetch(`${domain}/user`, {
       credentials: "include",
     })
       .then((res) => res.json())
