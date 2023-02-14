@@ -11,6 +11,7 @@ import { MyPets } from "./pages/MyPets/MyPets";
 import Login from "./pages/SignIn/SignIn";
 
 function App() {
+  console.log("App rendered");
   return (
     <div className="app">
       <NavBar path="/" />

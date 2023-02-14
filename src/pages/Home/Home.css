@@ -21,6 +21,7 @@
 @media screen and (max-width: 420px) {
   .homeContainer {
     --buttonSize: 4rem;
+    font-size: 0.5rem;
   }
 }
 
