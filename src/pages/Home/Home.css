@@ -1,9 +1,29 @@
 .homeContainer {
+  --buttonSize: 7rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+@media screen and (max-width: 550px) {
+  .homeContainer {
+    --buttonSize: 6rem;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .homeContainer {
+    --buttonSize: 5rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .homeContainer {
+    --buttonSize: 4rem;
+  }
+}
+
 .homeStructure {
   background: url(https://i.cbc.ca/1.5077459.1553886010!/fileImage/httpImage/pets.jpg)
     no-repeat center 30% / cover;
@@ -51,13 +71,13 @@
 }
 
 .square-button {
-  width: 7rem;
-  height: 7rem;
+  width: var(--buttonSize);
+  height: var(--buttonSize);
 }
 
 .square-button-pet {
-  width: 7rem;
-  height: 7rem;
+  width: var(--buttonSize);
+  height: var(--buttonSize);
   color: blue;
   display: flex !important;
   align-items: end;

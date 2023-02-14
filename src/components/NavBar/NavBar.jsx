@@ -28,13 +28,13 @@ export default function NavBar() {
               Profile
             </Link>
           ) : null}
-          <div className="search-button">
-            {location.pathname === "/" ? null : (
+          {location.pathname === "/" ? null : (
+            <div className="search-button">
               <Link className="nav-link nav-text-color" to="/search">
                 Search
               </Link>
-            )}
-          </div>
+            </div>
+          )}
         </Nav>
         <div className="right-NavBar">
           {!isLoggedIn ? (

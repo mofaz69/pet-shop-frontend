@@ -1,3 +1,8 @@
+@media screen and (max-width: 420px) {
+  .navbar {
+    font-size: 0.9rem;
+  }
+}
 .navBar-container {
   background-color: #e8e8e8;
   border-top: 5px solid rgb(59 113 202);
