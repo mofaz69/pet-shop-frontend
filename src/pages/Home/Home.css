@@ -21,7 +21,7 @@
 @media screen and (max-width: 420px) {
   .homeContainer {
     --buttonSize: 4rem;
-    font-size: 0.5rem;
+    --fontSize: 0.5rem;
   }
 }
 
@@ -67,18 +67,19 @@
   background-color: #e8e8e8;
   border: 5px solid rgb(59 113 202);
   padding: 2rem 0;
-
   width: 100%;
 }
 
 .square-button {
   width: var(--buttonSize);
   height: var(--buttonSize);
+  font-size: var(--fontSize);
 }
 
 .square-button-pet {
   width: var(--buttonSize);
   height: var(--buttonSize);
+  font-size: var(--fontSize);
   color: blue;
   display: flex !important;
   align-items: end;
